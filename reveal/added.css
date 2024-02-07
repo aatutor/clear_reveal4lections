@@ -1,0 +1,21 @@
+
+warning, error {
+  text-shadow: #333 1px 1px 5px;
+}
+warning {
+  color: blue;
+}
+warning::before{
+  content: "warning: ";
+}
+error {
+  color: red;
+  font-weight: bold;
+}
+error::before{
+  content: "error: ";
+}
+
+span.hl {
+  color: darkblue;
+}
