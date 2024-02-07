@@ -1,21 +1,37 @@
 
-warning, error {
-  text-shadow: #333 1px 1px 5px;
+:root {
+  --p-hl-color: rgb(0, 69, 173);
+  --p-hl-errcolor: red;
 }
-warning {
-  color: blue;
+
+warning, error, c, section[data-markdown-parsed="true"] code:not(pre code) {
+  /* text-shadow: #333 1px 1px 9px; */
+  color: var(--p-hl-color);
+  background-color: azure;
+  border: 2px dotted; /* [none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset] */
+  border-color: var(--p-hl-color);
+  border-radius: 0.3em;
+  padding: 0px 0.3em;
+  font-family: Ubuntu Mono;
+}
+warning, error {
+  margin-top: 50px; /* need fix */
 }
 warning::before{
   content: "warning: ";
 }
 error {
-  color: red;
-  font-weight: bold;
+  color: var(--p-hl-errcolor);
+  border-color: var(--p-hl-errcolor);
 }
 error::before{
   content: "error: ";
 }
 
-span.hl {
-  color: darkblue;
+
+.reveal pre, .reveal code{
+  border-radius: 1em;
+}
+.reveal {
+  letter-spacing: -0.02em;
 }
