@@ -1,3 +1,3 @@
 ## usage
 
-- `new.html` template could move to `../`
+- `new.html` template could moveup to `../`
