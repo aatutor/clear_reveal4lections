@@ -3,8 +3,10 @@ function parseSource(src){
   var grep = src.indexOf('|');
   var name = src.slice(0, (grep != -1) ? grep : src.length);
 
-  var reg = src.slice(grep+1).split('-').map((val) => parseInt(val));
-  reg[0]--;
+  if (grep != -1) {
+    var reg = src.slice(grep+1).split('-').map((val) => parseInt(val));
+    reg[0]--;
+  }
 
   return {
     filename: name,
