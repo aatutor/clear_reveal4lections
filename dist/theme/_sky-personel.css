@@ -5,12 +5,15 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
-@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap);
+
+/* @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital@0;1&display=swap');
-@import url(./fonts/Kankin.css);
-@import url(./fonts/PTMono.css);
-@import url(./fonts/VictorMono.css);
+/* @import url(fonts/Kankin.css); */
+@import url(fonts/PTMono.css);
+@import url(fonts/VictorMono.css);
+
+@import url(added.css);
 
 .reveal a {
   line-height: 1.3em;
@@ -20,29 +23,28 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   color: #fff;
 }
 
-
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
-:root {
+ :root {
   --r-background-color: #f7fbfc;
   --r-main-font: PT Mono, Victor Mono, Open Sans, sans-serif;
-  --r-main-font-size: 30px;
   --r-main-color: #010049;
+  --r-main-font-size: 30px;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
   --r-heading-font: 'Ubuntu Mono', Victor Mono,  PT Mono, Quicksand, sans-serif;
   --r-heading-color: #010049;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: -0.03em;
-  --r-heading-text-transform: none;
-  --r-heading-text-shadow: none;
-  --r-heading-font-weight: bold;
-  --r-heading1-text-shadow: none;
   --r-heading1-size: 4.11em;
   --r-heading2-size: 2.55em;
   --r-heading3-size: 1.77em;
   --r-heading4-size: 1.33em;
+  --r-heading-text-transform: none;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: bold;
+  --r-heading1-text-shadow: none;
   --r-code-font: Ubuntu Mono, monospace;
   --r-link-color: #3b759e;
   --r-link-color-dark: #264c66;
@@ -52,8 +54,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   --r-overlay-element-bg-color: 0, 0, 0;
   --r-overlay-element-fg-color: 240, 240, 240;
 }
-@import url(../../added.css);
-
 
 .reveal-viewport {
   background: #add9e4;
