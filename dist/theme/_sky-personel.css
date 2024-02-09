@@ -28,6 +28,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  *********************************************/
  :root {
   --r-background-color: #f7fbfc;
+  --r-background-color2: #add9e4;
   --r-main-font: PT Mono, Victor Mono, Open Sans, sans-serif;
   --r-main-color: #010049;
   --r-main-font-size: 30px;
@@ -316,7 +317,8 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal img {
-  margin: var(--r-block-margin) 0;
+  margin: var(--r-block-margin) 1em;
+  border-radius: 1em;
 }
 
 /*********************************************

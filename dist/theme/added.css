@@ -30,8 +30,8 @@ error::before{
 
 
 .reveal pre, .reveal code{
-  border-radius: 1em;
+  border-radius: 1rem;
 }
 .reveal {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02rem;
 }
