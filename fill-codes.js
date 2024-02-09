@@ -26,7 +26,7 @@ list.forEach((code) => {
   var src = code.getAttribute('src');
   console.log(src);
   var parsed = parseSource(src);
-  console.log(parsed.filename);
+  // console.log(parsed.filename);
   
   request.open("GET", parsed.filename, false); // `false` makes the request synchronous
   request.send(null);
@@ -34,13 +34,13 @@ list.forEach((code) => {
   if (request.status === 200) {
     var textCode = request.responseText;
     if (parsed.reg != null){
-      console.log(parsed.reg);
+      // console.log(parsed.reg);
       var codeLines = textCode.split('\r\n').slice(parsed.reg[0], parsed.reg[1]).join('\r\n');
-      console.log(textCode);
-      console.log(codeLines);
+      // console.log(textCode);
+      // console.log(codeLines);
       textCode = codeLines;
     }
-    console.log();
+    // console.log();
     code.innerHTML = '<script type="text/template">' + textCode + '</script>';
   } else {
     console.log(code);
