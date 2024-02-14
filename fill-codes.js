@@ -24,10 +24,8 @@ function sliceLines(text, ranges) {
   var builder = [];
   ranges.forEach((rng) => {
     builder.push(
-      rng.length ? (
-        codeLines
-          .slice(rng[0], rng.length == 2 ? rng[1] : rng[0]+1)
-          .join(separator)
+      rng.length != 0 ? (
+        codeLines.slice(rng[0], rng.length == 2 ? rng[1] : rng[0]+1).join(separator)
       ) : (
         '...'
       )
