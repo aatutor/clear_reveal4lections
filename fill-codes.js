@@ -1,60 +1,76 @@
 
-function parseSource(src){
-  var grep = src.split('|');
+function parseAttribs(attrs){
+  var grep = attrs.split('|');
   var res = {};
-  res.filename = grep[0];
-
-  if (grep[1] != null) {
-    res.ranges = grep[1].split(',').map((pair) => {
-      var cut = pair.split('-').map((val) => parseInt(val));
-      cut[0]--;
-      return cut;
+  
+  if (grep[0] != null) {
+    res.ranges = grep[0].split(',').map((range) => {
+      if (range != '') {
+        var cut = range.split('-').map((val) => parseInt(val));
+        cut[0]--;
+        return cut;
+      }
+      return [];
     });
-
   }
-
+  
   return res;
 }
+
 function sliceLines(text, ranges) {
-  var codeLines = text.split('\r\n');
+  const separator = '\r\n';
+
+  var codeLines = text.split(separator);
   var builder = [];
   ranges.forEach((rng) => {
-    builder.push(codeLines.slice(rng[0], rng.length == 2 ? rng[1] : rng[0]+1).join('\r\n')+'\r\n');
+    builder.push(
+      rng.length ? (
+        codeLines
+          .slice(rng[0], rng.length == 2 ? rng[1] : rng[0]+1)
+          .join(separator)
+      ) : (
+        '...'
+      )
+    );
   });
-  return builder.join('...\r\n');
+  if (ranges.length > 1) 
+    console.log(builder);
+  return builder.join( separator );
 }
-var snippetFiller = (code) => {
-  var request = new XMLHttpRequest();
-  var src = code.getAttribute('src');
-  // console.log(src);
-  var parsed = parseSource(src);
-  // console.log(parsed);
-  
-  request.open("GET", parsed.filename, false); // `false` makes the request synchronous
-  request.send(null);
-  
-  if (request.status === 200) {
-    var textCode = request.responseText;
 
-    if (parsed.ranges != null){
-      textCode = sliceLines(textCode, parsed.ranges);
-      // console.log(parsed.ranges);
-      console.log(textCode);
+function fillFromFile(list, filler) {
+  list.forEach( (item) => {
+    var parsed = parseAttribs( item.getAttribute('src-data') );
+    console.log(parsed);
+    
+    var request = new XMLHttpRequest();
+    request.open("GET", item.getAttribute('src'), false); // `false` makes the request synchronous
+    request.send(null);
+    
+    if (request.status === 200) {
+      var textCode = request.responseText;
+
+      if (parsed.ranges != null){
+        textCode = sliceLines(textCode, parsed.ranges);
+        // console.log(parsed.ranges);
+        // console.log(textCode);
+      }
+      item.innerHTML = filler.pref + textCode + filler.suff;
+    } else {
+      console.log(item);
     }
-    code.innerHTML = '<script type="text/template">' + textCode + '</script>';
-  } else {
-    console.log(code);
-  }
-};
+  });
+}
 
-/// TODO: only pre>code selector
+
+/// ??? TODO: only pre>code selector
 var blocks = Array.from(document.getElementsByTagName("code"));
 // console.log(blocks);
 
-var list = blocks.filter((code) => ![null, ''].includes( code.getAttribute('src') ) );
+var list = blocks.filter( (code) => ![null, ''].includes( code.getAttribute('src') ) );
 // console.log(list);
 
-list.forEach(snippetFiller);
+fillFromFile(list, { pref: '<script type="text/template">', suff: '</script>' });
 
 var lang = document.getElementsByClassName('reveal')[0].getAttribute('data-lang');
 
