@@ -1,6 +1,7 @@
 
 :root {
   --p-hl-color: rgb(0, 69, 173);
+  --p-hl-border-color: rgb(88, 116, 158);
   --p-hl-errcolor: red;
 }
 
@@ -8,7 +9,7 @@ warning, error, c, [data-markdown-parsed="true"] code:not(pre code) {
   /* text-shadow: #333 1px 1px 9px; */
   color: var(--p-hl-color);
   background-color: azure;
-  border: var(--p-hl-color) 2px dotted; /* [none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset] */
+  border: var(--p-hl-border-color) 2px dotted; /* [none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset] */
   border-radius: 0.3em;
   padding: 0px 0.3em;
   font-family: Ubuntu Mono;
