@@ -36,6 +36,9 @@ error::before{
   text-align: left;
   font-size: 1.3rem;
 }
+.console ::marker{
+  content: ''
+}
 
 .reveal pre, .reveal code{
   border-radius: 1rem;

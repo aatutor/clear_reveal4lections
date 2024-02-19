@@ -1,13 +1,17 @@
 
 function parseAttribs(attrs){
-  var grep = attrs.split('|');
   var res = {};
+
+  if (attrs == null) 
+    return res;
+
+  var grep = attrs.split('|');
   
   if (grep[0] != null) {
     res.ranges = grep[0].split(',').map((range) => {
       if (range != '') {
         var cut = range.split('-').map((val) => parseInt(val));
-        cut[0]--;
+        // cut[0]--;
         return cut;
       }
       return [];
@@ -25,12 +29,28 @@ function sliceLines(text, ranges) {
   ranges.forEach((rng) => {
     builder.push(
       rng.length != 0 ? (
-        codeLines.slice(rng[0], rng.length == 2 ? rng[1] : rng[0]+1).join(separator)
+        codeLines.slice(rng[0]-1, rng.length == 2 ? rng[1] : rng[0]+1).join(separator)
       ) : (
         '...'
       )
     );
   });
+  for (var i=0; i != ranges.length; ++i) {
+    if (ranges[i].length == 0) {
+      var tabsBfr = (i == 0) ? ''
+        : codeLines[Math.max.apply(null, ranges[i-1])-1]
+            .match(/^\t+/)[0];
+
+      var tabsAft = (i == ranges.length-1) ? '' 
+        : codeLines[Math.min.apply(null, ranges[i+1])-1]
+            .match(/^\t*/)[0];
+      builder[i] = (
+        tabsBfr.length > tabsAft.length
+          ? tabsBfr
+          : tabsAft
+        ) + builder[i]
+    }
+  }
   if (ranges.length > 1) 
     console.log(builder);
   return builder.join( separator );
@@ -38,12 +58,12 @@ function sliceLines(text, ranges) {
 
 function fillFromFile(list, filler) {
   list.forEach( (item) => {
-    var parsed = parseAttribs( item.getAttribute('src-data') );
-    console.log(parsed);
-    
     var request = new XMLHttpRequest();
     request.open("GET", item.getAttribute('src'), false); // `false` makes the request synchronous
     request.send(null);
+    
+    var parsed = parseAttribs( item.getAttribute('src-data') );
+    // console.log(parsed);
     
     if (request.status === 200) {
       var textCode = request.responseText;
