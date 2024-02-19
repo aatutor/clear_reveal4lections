@@ -44,6 +44,16 @@ error::before{
   border-radius: 1rem;
 }
 
+.reveal .h-mar {
+  margin: 1rem auto;
+}
+.reveal .h-mar-l1 {
+  margin-left: 1rem;
+}
+.reveal .h-mar-r1 {
+  margin-right: 1rem;
+}
+
 
 .imgbox {
   /* position: relative; */

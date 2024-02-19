@@ -1,8 +1,12 @@
 
+function notEmpty(check) {
+  return [null, ''].includes(check)
+}
+
 function parseAttribs(attrs){
   var res = {};
 
-  if (attrs == null) 
+  if (notEmpty(attrs)) 
     return res;
 
   var grep = attrs.split('|');
@@ -29,21 +33,28 @@ function sliceLines(text, ranges) {
   ranges.forEach((rng) => {
     builder.push(
       rng.length != 0 ? (
-        codeLines.slice(rng[0]-1, rng.length == 2 ? rng[1] : rng[0]+1).join(separator)
+        codeLines.slice(rng[0]-1, rng.length == 2 ? rng[1] : rng[0]).join(separator)
       ) : (
         '...'
       )
     );
   });
   for (var i=0; i != ranges.length; ++i) {
+    console.log(ranges[i])
     if (ranges[i].length == 0) {
       var tabsBfr = (i == 0) ? ''
-        : codeLines[Math.max.apply(null, ranges[i-1])-1]
-            .match(/^\t+/)[0];
+        : (codeLines[Math.max.apply(null, ranges[i-1])-1]
+            .match(/^\t+/) 
+            || ['']
+          )[0];
 
       var tabsAft = (i == ranges.length-1) ? '' 
-        : codeLines[Math.min.apply(null, ranges[i+1])-1]
-            .match(/^\t*/)[0];
+        : (codeLines[Math.min.apply(null, ranges[i+1])-1]
+            .match(/^\t*/)
+            || ['']
+          )[0];
+      // console.log(tabsBfr.length)
+      // console.log(tabsAft.length)
       builder[i] = (
         tabsBfr.length > tabsAft.length
           ? tabsBfr
@@ -69,8 +80,8 @@ function fillFromFile(list, filler) {
       var textCode = request.responseText;
 
       if (parsed.ranges != null){
+        console.log(parsed.ranges);
         textCode = sliceLines(textCode, parsed.ranges);
-        // console.log(parsed.ranges);
         // console.log(textCode);
       }
       item.innerHTML = filler.pref + textCode + filler.suff;
@@ -85,7 +96,7 @@ function fillFromFile(list, filler) {
 var blocks = Array.from(document.getElementsByTagName("code"));
 // console.log(blocks);
 
-var list = blocks.filter( (code) => ![null, ''].includes( code.getAttribute('src') ) );
+var list = blocks.filter( (code) => !notEmpty( code.getAttribute('src') ) );
 // console.log(list);
 
 fillFromFile(list, { pref: '<script type="text/template">', suff: '</script>' });
