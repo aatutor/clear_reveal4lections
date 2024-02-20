@@ -43,6 +43,16 @@ error::before{
 .reveal pre, .reveal code{
   border-radius: 1rem;
 }
+.reveal pre {
+  margin-bottom: 3rem;
+}
+
+.reveal pre code::after{
+  content: attr(src);
+  position: absolute;
+  bottom: -2rem;
+  right: 1rem;
+}
 
 .reveal .h-mar {
   margin: 1rem auto;

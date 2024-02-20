@@ -1,21 +1,21 @@
 
-function notEmpty(check) {
+function isEmpty(check) {
   return [null, ''].includes(check)
 }
 
 function parseAttribs(attrs){
   var res = {};
 
-  if (notEmpty(attrs)) 
+  if (isEmpty(attrs)) 
     return res;
 
   var grep = attrs.split('|');
+  var offset = parseInt(grep[1]) || 0;
   
   if (grep[0] != null) {
     res.ranges = grep[0].split(',').map((range) => {
       if (range != '') {
-        var cut = range.split('-').map((val) => parseInt(val));
-        // cut[0]--;
+        var cut = range.split('-').map((val) => (parseInt(val) + offset) );
         return cut;
       }
       return [];
@@ -72,6 +72,9 @@ function fillFromFile(list, filler) {
     var request = new XMLHttpRequest();
     request.open("GET", item.getAttribute('src'), false); // `false` makes the request synchronous
     request.send(null);
+    // var fileName = request.responseURL.split('/').pop();
+
+    console.log(item.parentElement)
     
     var parsed = parseAttribs( item.getAttribute('src-data') );
     // console.log(parsed);
@@ -91,25 +94,59 @@ function fillFromFile(list, filler) {
   });
 }
 
+function filterAttr(arr) {
+  return arr.filter( (elem) => !isEmpty( elem.getAttribute('src') ) );
+}
+
+function readProps() {
+  var request = new XMLHttpRequest();
+  request.open("GET", 'props.json', false); // `false` makes the request synchronous
+  request.send(null);
+  
+  return JSON.parse(request.responseText);
+}
+
+function tagPrepend(tag, text) {
+  tag.innerHTML = text + tag.innerHTML;
+}
+
+
+var props = readProps();
 
 /// ??? TODO: only pre>code selector
-var blocks = Array.from(document.getElementsByTagName("code"));
-// console.log(blocks);
+var codes = Array.from(document.getElementsByTagName("code"));
+// console.log(codes);
 
-var list = blocks.filter( (code) => !notEmpty( code.getAttribute('src') ) );
-// console.log(list);
+fillFromFile(
+  filterAttr(codes), 
+  { 
+    pref: '<script type="text/template">', 
+    suff: '</script>'
+  }
+);
 
-fillFromFile(list, { pref: '<script type="text/template">', suff: '</script>' });
-
-var lang = document.getElementsByClassName('reveal')[0].getAttribute('data-lang');
-
-if (lang != null){
-  blocks.forEach((code) => {
-    if ([null, ''].includes( code.getAttribute('class') )){
-      code.setAttribute('class', lang);
+if (props.lang){
+  codes.forEach((code) => {
+    if (isEmpty( code.getAttribute('class') )){
+      code.setAttribute('class', props.lang);
     }
     [ 'data-trim', 'data-noescape', 'contenteditable' ].forEach((attr) => {
       code.setAttribute(attr, '');
     })
   })
 }
+
+if (props.titlePref) {
+  tagPrepend( 
+    document.getElementsByTagName('title')[0], 
+    props.titlePref + ' | '
+  )
+}
+
+if (props.namePref) {
+  tagPrepend(
+    document.getElementsByName('autor')[0],
+    props.namePref + '<br>'
+  )
+}
+
