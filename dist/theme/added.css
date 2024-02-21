@@ -90,3 +90,9 @@ error::before{
   object-fit: cover;
   object-position: 0 0;
 }
+
+small[name='autor'] {
+  margin-right:20%; 
+  margin-top: 5%; 
+  text-align: left;
+}

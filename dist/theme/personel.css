@@ -239,7 +239,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   display: block;
   padding: 2em;
   overflow: auto;
-  max-height: 20.5em;
+  max-height: 28rem;
   word-wrap: normal;
 }
 
@@ -308,6 +308,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   margin: var(--r-block-margin) 1rem;
   border-radius: 1rem;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  max-height: 28rem;
 }
 
 /*********************************************
