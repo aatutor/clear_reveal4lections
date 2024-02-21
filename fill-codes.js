@@ -145,7 +145,8 @@ if (props.titlePref) {
 
 if (props.namePref) {
   tagPrepend(
-    document.getElementsByName('autor')[0],
+    ( document.getElementsByName('autor')[0] 
+      || document.getElementsByTagName('section')[0].getElementsByTagName('small')[0]),
     props.namePref + '<br>'
   )
 }
