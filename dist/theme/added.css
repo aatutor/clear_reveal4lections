@@ -43,12 +43,11 @@ error::before{
 .reveal pre, .reveal code{
   border-radius: 1rem;
 }
-/* .reveal pre:has(code:not([no-after])) { */
-.reveal pre {
+.reveal pre:has(code[src]:not([src=""]):not([no-after])) {
   margin-bottom: 3rem;
 }
 
-.reveal pre code:not([no-after]):not(.visible)::after{
+.reveal pre code:not([src=""]):not([no-after]):not(.visible)::after{
   content: attr(src);
   position: absolute;
   bottom: -2rem;
