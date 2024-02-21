@@ -95,23 +95,18 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   text-shadow: var(--r-heading-text-shadow);
   word-wrap: break-word;
 }
-
 .reveal h1 {
   font-size: var(--r-heading1-size);
 }
-
 .reveal h2 {
   font-size: var(--r-heading2-size);
 }
-
 .reveal h3 {
   font-size: var(--r-heading3-size);
 }
-
 .reveal h4 {
   font-size: var(--r-heading4-size);
 }
-
 .reveal h1 {
   text-shadow: var(--r-heading1-text-shadow);
 }
@@ -146,7 +141,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal b {
   font-weight: bold;
 }
-
 .reveal em {
   font-style: italic;
 }
@@ -158,23 +152,18 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   text-align: left;
   margin: 0 0 0 1em;
 }
-
 .reveal ol {
   list-style-type: decimal;
 }
-
 .reveal ul {
   list-style-type: disc;
 }
-
 .reveal ul ul {
   list-style-type: square;
 }
-
 .reveal ul ul ul {
   list-style-type: circle;
 }
-
 .reveal ul ul,
 .reveal ul ol,
 .reveal ol ol,
@@ -186,7 +175,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal dt {
   font-weight: bold;
 }
-
 .reveal dd {
   margin-left: 40px;
 }
@@ -201,19 +189,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
 }
-
 .reveal blockquote p:first-child,
 .reveal blockquote p:last-child {
   display: inline-block;
 }
-
 .reveal q {
   font-style: italic;
 }
-
-/* .r-stack {
-  ;
-} */
 
 .reveal pre {
   display: block;
@@ -228,13 +210,11 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 }
-
 .reveal code {
   font-family: var(--r-code-font);
   text-transform: none;
   tab-size: 2;
 }
-
 .reveal pre code {
   display: block;
   padding: 2em;
@@ -242,13 +222,14 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   max-height: 28rem;
   word-wrap: normal;
 }
-
 .reveal .code-wrapper {
   white-space: normal;
 }
-
 .reveal .code-wrapper code {
   white-space: pre;
+}
+.reveal pre, .reveal code {
+  border-radius: 1rem;
 }
 
 .reveal table {
@@ -256,28 +237,23 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 .reveal table th {
   font-weight: bold;
 }
-
 .reveal table th,
 .reveal table td {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
   border-bottom: 1px solid;
 }
-
 .reveal table th[align=center],
 .reveal table td[align=center] {
   text-align: center;
 }
-
 .reveal table th[align=right],
 .reveal table td[align=right] {
   text-align: right;
 }
-
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
   border-bottom: none;
@@ -287,19 +263,16 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   vertical-align: super;
   font-size: smaller;
 }
-
 .reveal sub {
   vertical-align: sub;
   font-size: smaller;
 }
-
 .reveal small {
   display: inline-block;
   font-size: 0.5em;
   line-height: 1.2em;
   vertical-align: top;
 }
-
 .reveal small * {
   vertical-align: top;
 }
@@ -319,7 +292,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   text-decoration: none;
   transition: color 0.15s ease;
 }
-
 .reveal a:hover {
   color: var(--r-link-color-hover);
   text-shadow: none;

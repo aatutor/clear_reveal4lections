@@ -43,10 +43,7 @@ error::before {
 }
 /*********************************/
 
-/*** pre code ***/
-.reveal pre, .reveal code {
-  border-radius: 1rem;
-}
+/*** auto-fill src ***/
 .reveal pre:has(code[src]:not([src=""]):not([no-after])) {
   margin-bottom: 3rem;
 }
