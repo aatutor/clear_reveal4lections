@@ -5,8 +5,8 @@
   --p-hl-errcolor: red;
 }
 
+/*** warning | error | inline-code ***/
 warning, error, c, [data-markdown-parsed="true"] code:not(pre code) {
-  /* text-shadow: #333 1px 1px 9px; */
   color: var(--p-hl-color);
   background-color: azure;
   border: var(--p-hl-border-color) 2px dotted; /* [none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset] */
@@ -17,17 +17,19 @@ warning, error, c, [data-markdown-parsed="true"] code:not(pre code) {
 warning, error {
   margin-top: 50px; /* need fix */
 }
-warning::before{
+warning::before {
   content: "warning: ";
 }
 error {
   color: var(--p-hl-errcolor);
   border-color: var(--p-hl-errcolor);
 }
-error::before{
+error::before {
   content: "error: ";
 }
+/*******************************/
 
+/*** black console ***/
 .console {
   color: azure;
   background-color: black;
@@ -39,21 +41,24 @@ error::before{
 .console ::marker{
   content: ''
 }
+/*********************************/
 
-.reveal pre, .reveal code{
+/*** pre code ***/
+.reveal pre, .reveal code {
   border-radius: 1rem;
 }
 .reveal pre:has(code[src]:not([src=""]):not([no-after])) {
   margin-bottom: 3rem;
 }
-
-.reveal pre code:not([src=""]):not([no-after]):not(.visible)::after{
+.reveal pre code:not([src=""]):not([no-after]):not(.visible)::after {
   content: attr(src);
   position: absolute;
   bottom: -2rem;
   right: 1rem;
 }
+/*******************************/
 
+/*** horizon fix ***/
 .reveal .h-mar {
   margin: 1rem auto;
 }
@@ -63,35 +68,12 @@ error::before{
 .reveal .h-mar-r1 {
   margin-right: 1rem;
 }
+/***********************************/
 
-
-.imgbox {
-  /* position: relative; */
-  /* overflow: hidden; */
-  /* width:300px; */
-  /* height:300px; */
-  
-  width: 300px;
-  height: 400px;
-  /* border-style: solid; */
-}
-.imgbox img {
-  /* position: absolute; */
-  /* top:50%; */
-  /* left:50%; */
-  /* transform:translate(-50%,-50%); */
-  /* width:300px;
-  height:300px; */
-  /* object-fit:cover; */
-  
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 0 0;
-}
-
+/*** autor style ***/
 small[name='autor'] {
   margin-right:20%; 
   margin-top: 5%; 
   text-align: left;
 }
+/*******************/
