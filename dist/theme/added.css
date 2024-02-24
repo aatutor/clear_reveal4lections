@@ -55,6 +55,12 @@ error::before {
 }
 /*******************************/
 
+/*** r-stack ***/
+.reveal .r-stack>.fragment {
+  width: 100%;
+}
+/***************/
+
 /*** horizon fix ***/
 .reveal .h-mar {
   margin: 1rem auto;
