@@ -47,7 +47,7 @@ error::before {
 .reveal pre:has(code[src]:not([src=""]):not([no-after])) {
   margin-bottom: 3rem;
 }
-.reveal pre code:not([src=""]):not([no-after]):not(.visible)::after {
+.reveal pre code[src]:not([src=""]):not([no-after]):not(.visible)::after {
   content: attr(src);
   position: absolute;
   bottom: -2rem;
