@@ -44,10 +44,11 @@ error::before {
 /*********************************/
 
 /*** auto-fill src ***/
-.reveal pre:has(code[src]:not([src=""]):not([no-after])) {
+.reveal pre:has(code[src]:not([src=""]):not([no-after])),
+.reveal pre:has(code[after]) {
   margin-bottom: 3rem;
 }
-.reveal pre code[src]:not([src=""]):not([no-after]):not(.visible)::after {
+.reveal pre code[src]:not([src=""]):not([no-after]):not([after]):not(.visible)::after {
   content: attr(src);
   position: absolute;
   bottom: -2rem;
@@ -83,7 +84,7 @@ small[name='autor'] {
 
 /*** arrow ***/
 .arrow {
-  border: solid var(--p-hl-color);
+  border: solid var(--p-hl-border-color);
   border-width: 0 0.3em 0.3em 0;
   display: inline-block;
   padding: 0.3em;
