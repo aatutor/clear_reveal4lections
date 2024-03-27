@@ -40,10 +40,10 @@ function sliceLines(text, ranges) {
     );
   });
   for (var i=0; i != ranges.length; ++i) {
-    console.log(ranges[i])
+    // console.log(ranges[i])
     if (ranges[i].length == 0) {
       var tabsBfr = (i == 0) ? ''
-        : (codeLines[Math.max.apply(null, ranges[i-1])-1]
+      : (codeLines[Math.max.apply(null, ranges[i-1])-1]
             .match(/^\t+/) 
             || ['']
           )[0];
@@ -62,8 +62,7 @@ function sliceLines(text, ranges) {
         ) + builder[i]
     }
   }
-  if (ranges.length > 1) 
-    console.log(builder);
+  // if (ranges.length > 1) console.log(builder);
   return builder.join( separator );
 }
 
@@ -74,7 +73,7 @@ function fillFromFile(list, filler) {
     request.send(null);
     // var fileName = request.responseURL.split('/').pop();
 
-    console.log(item.parentElement)
+    // console.log(item.parentElement)
     
     var parsed = parseAttribs( item.getAttribute('src-data') );
     // console.log(parsed);
@@ -82,11 +81,17 @@ function fillFromFile(list, filler) {
     if (request.status === 200) {
       var textCode = request.responseText;
 
-      if (parsed.ranges != null){
-        console.log(parsed.ranges);
+      // if (parsed.ranges != null){
+			try{
+        // console.log(parsed.ranges);
         textCode = sliceLines(textCode, parsed.ranges);
         // console.log(textCode);
       }
+			catch(e){
+				console.log(e);
+				console.log(item);
+			}
+			
       item.innerHTML = filler.pref + textCode + filler.suff;
     } else {
       console.log(item);
