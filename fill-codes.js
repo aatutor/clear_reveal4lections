@@ -25,6 +25,8 @@ function parseAttribs(attrs){
   return res;
 }
 
+// function countTabs()
+
 function sliceLines(text, ranges) {
   const separator = '\r\n';
 
@@ -39,20 +41,30 @@ function sliceLines(text, ranges) {
       )
     );
   });
+	const countTabs = (ind, lvl) => {
+		return (ind == (lvl=='max' ? 0 : ranges.length-1)) ? ''
+      : (
+				codeLines[Math[lvl].apply(null, ranges[ind+(lvl=='max' ? -1:1)])-1]
+					.match(/^\t*/)
+				|| ['']
+			)[0];
+	}
   for (var i=0; i != ranges.length; ++i) {
     // console.log(ranges[i])
     if (ranges[i].length == 0) {
-      var tabsBfr = (i == 0) ? ''
-      : (codeLines[Math.max.apply(null, ranges[i-1])-1]
-            .match(/^\t+/) 
-            || ['']
-          )[0];
+      // var tabsBfr = (i == 0) ? ''
+      // : (codeLines[Math['max'].apply(null, ranges[i-1])-1]
+      //       .match(/^\t*/)
+      //       || ['']
+      //     )[0];
 
-      var tabsAft = (i == ranges.length-1) ? '' 
-        : (codeLines[Math.min.apply(null, ranges[i+1])-1]
-            .match(/^\t*/)
-            || ['']
-          )[0];
+      // var tabsAft = (i == ranges.length-1) ? '' 
+      //   : (codeLines[Math['min'].apply(null, ranges[i+1])-1]
+      //       .match(/^\t*/)
+      //       || ['']
+      //     )[0];
+			var tabsBfr = countTabs(i, 'max');
+			var tabsAft = countTabs(i, 'min');
       // console.log(tabsBfr.length)
       // console.log(tabsAft.length)
       builder[i] = (
