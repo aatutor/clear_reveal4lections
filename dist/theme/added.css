@@ -43,6 +43,7 @@ error::before {
 }
 /*********************************/
 
+/* TODO: затухание имени файла */
 /*** auto-fill src ***/
 .reveal pre:has(code[src]:not([src=""]):not([no-after])),
 .reveal pre:has(code[after]) {
