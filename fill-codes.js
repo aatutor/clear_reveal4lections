@@ -88,16 +88,17 @@ function fillFromFile(list, filler) {
     // console.log(item.parentElement)
     
     var parsed = parseAttribs( item.getAttribute('src-data') );
-    // console.log(parsed);
+    console.log(parsed);
     
     if (request.status === 200) {
       var textCode = request.responseText;
 
       // if (parsed.ranges != null){
 			try{
-        // console.log(parsed.ranges);
+        console.log(parsed.ranges);
+        console.log(textCode);
         textCode = sliceLines(textCode, parsed.ranges);
-        // console.log(textCode);
+        console.log(textCode);
       }
 			catch(e){
 				console.log(e);
