@@ -28,7 +28,7 @@ function parseAttribs(attrs){
 // function countTabs()
 
 function sliceLines(text, ranges) {
-  const separator = '\r\n';
+  const separator = '\n';
 
   var codeLines = text.split(separator);
   var builder = [];
