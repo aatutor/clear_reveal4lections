@@ -119,7 +119,7 @@ function filterAttr(arr) {
 
 function readProps() {
   var request = new XMLHttpRequest();
-  request.open("GET", 'props.json', false); // `false` makes the request synchronous
+  request.open("GET", 'src/props.json', false); // `false` makes the request synchronous
   request.send(null);
   
   return JSON.parse(request.responseText);
